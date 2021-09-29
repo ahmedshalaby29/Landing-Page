@@ -30,11 +30,11 @@ let currentActiveSection;
  * 
 */
 function createListSections(list , sections){
-  for(section of sections){
-      sectionName = section.getAttribute('data-nav');
-      sectionID = section.getAttribute('id');
+  for(let section of sections){
+      let sectionName = section.getAttribute('data-nav');
+      let sectionID = section.getAttribute('id');
       //creating a section element foreach section
-      sectionNavElement = document.createElement('li');
+      let sectionNavElement = document.createElement('li');
       sectionNavElement.id = "nav__" + sectionID;
       sectionNavElement.innerHTML = `<a class='list__section' href='#${sectionID}'>${sectionName}</a>`;
 
@@ -46,20 +46,24 @@ function createListSections(list , sections){
 
 
 function checkActiveSection(){
-for(section of sections){
+    currentActiveSection = sections[0];
+for(let section of sections){
     if(scrollY >= section.offsetTop - 350 ){
         currentActiveSection = section;
     }
    
 }
-navList.childNodes.forEach((section) =>{
-    if(section.id !== "nav__" + currentActiveSection.id){
-        section.firstChild.id = "";
+
+
+for(let section of navList.children){
+if(section.id !== "nav__" + currentActiveSection.id){
+        section.firstElementChild.id = "";
     }else{
-   section.firstChild.id ="active__section";
+   section.firstElementChild.id ="active__section";
     }
-})
-        
+}
+
+
 }
 
 /**
